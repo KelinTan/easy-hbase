@@ -1,0 +1,4 @@
+#配置自定义Starter的自动化配置
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.gaoxin.mop.HBaseTemplateAutoConfigure
+
+com.mop.core.corebase.spring.MopBootStarterListener=com.gaoxin.mop.MopHbaseStarterListener
