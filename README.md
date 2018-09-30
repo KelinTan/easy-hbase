@@ -1,4 +1,3 @@
-> 新增码云地址：https://gitee.com/hanmov5/mop-hbase-template
 
 ## 一、写在前面
 
@@ -397,6 +396,4 @@ public interface HBaseDao {
 -   由于公司使用的hbase-client版本为0.96，所以这版本也只针对0.96，如果是更高版本的，由于部分api的改变暂不支持
 -    在dao的模块里面，有相应的demo用例和对应的测试用例，测试用例写的也不规范，主要是当初内部快速开发校验下，可以作为一个验证。
 -   spring-boot-starter版本也很简单，只是集成了一个扫描注入而已，也有相应的DEMO
--   最后，奉上源码地址，有不足的地方还望海涵，敬请斧正。
 
-[https://github.com/Kelin92/easy-hbase](https://github.com/Kelin92/easy-hbase)
