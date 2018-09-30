@@ -392,7 +392,7 @@ public interface HBaseDao {
 
 > Retrieve an HTableInterface implementation for access to a table. The returned HTableInterface is not thread safe, a new instance should be created for each using thread. This is a lightweight operation, pooling or caching of the returned HTableInterface is neither required nor desired. Note that the HConnection needs to be unmanaged (created with [`HConnectionManager.createConnection(Configuration)`](http://hbase.apache.org/1.2/apidocs/org/apache/hadoop/hbase/client/HConnectionManager.html#createConnection(org.apache.hadoop.conf.Configuration))).
 
--   如上述引用，HBase官方推荐HConnecton全局维护，而HTablePool也被废弃，不建议使用，所以我们这里也是维护了全局的HConnection，在HTable的使用上市即用即关的。
+-   如上述引用，HBase官方推荐HConnecton全局维护，而HTablePool也被废弃，不建议使用，所以我们这里也是维护了全局的HConnection，在HTable的使用是即用即关的。
 -   以上是主要的核心类，其主要映射也是通过反射来建立关系的，这里就不多说了
 -   由于公司使用的hbase-client版本为0.96，所以这版本也只针对0.96，如果是更高版本的，由于部分api的改变暂不支持
 -    在dao的模块里面，有相应的demo用例和对应的测试用例，测试用例写的也不规范，主要是当初内部快速开发校验下，可以作为一个验证。
