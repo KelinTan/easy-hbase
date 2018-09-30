@@ -394,3 +394,7 @@ public interface HBaseDao {
 -    在dao的模块里面，有相应的demo用例和对应的测试用例，测试用例写的也不规范，主要是当初内部快速开发校验下，可以作为一个验证。
 -   spring-boot-starter版本也很简单，只是集成了一个扫描注入而已，也有相应的DEMO
 
+4.使用
+
+- spring-boot可以参考spring-boot-demo引入对应的starter和配置hbase基础连接信息即可
+- spring版本可直接引入easy-hbase-dao，配置扫描路径和hbase的基础连接信息即可，参考easy-hbase-dao的test
