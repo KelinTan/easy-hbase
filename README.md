@@ -26,9 +26,6 @@
 
 1.  项目结构
     
-
- ![](https://static.oschina.net/uploads/space/2018/0401/145208_5ZIV_3057247.png)
-
 -   easy-hbase-core：主要包括一些基础的Bean和Annotation，常量和工具类
 -   easy-hbase-dao：主要代码，包括HBase相关操作代码封装和查询映射等，可直接spring集成使用
 -   easy-hbase-spring-boot-starter：一个简单的spring-boot-starter，适合spring-boot项目集成使用
