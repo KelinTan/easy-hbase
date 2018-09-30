@@ -136,8 +136,7 @@ public class HBaseDaoImpl implements HBaseDao {
             Scan scan = new Scan();
             FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
             if (StringUtils.isNotBlank(startRow)) {
-                RowFilter rowFilter = new RowFilter(CompareFilter.CompareOp.GREATER, new BinaryComparator(Bytes.toBytes(startRow)));
-                filterList.addFilter(rowFilter);
+                scan.setStartRow(startRow.getBytes());
             }
             if (StringUtils.isNotBlank(endRow)) {
                 scan.setStopRow(endRow.getBytes());
@@ -146,9 +145,7 @@ public class HBaseDaoImpl implements HBaseDao {
             filterList.addFilter(kof);
             scan.setFilter(filterList);
             scanner = hTable.getScanner(scan);
-            // 遍历结果集
             for (Result result : scanner) {
-                // 判断结果是否为空,是的话则跳过
                 if (!result.isEmpty()) {
                     String rowKey = new String(result.getRow());
                     if (StringUtils.isNotBlank(separate)) {
@@ -210,9 +207,7 @@ public class HBaseDaoImpl implements HBaseDao {
             filterList.addFilter(kof);
             scan.setFilter(filterList);
             scanner = hTable.getScanner(scan);
-            // 遍历结果集
             for (Result result : scanner) {
-                // 判断结果是否为空,是的话则跳过
                 if (!result.isEmpty()) {
                     rowKeys.add(new String(result.getRow()));
                 }
@@ -393,8 +388,7 @@ public class HBaseDaoImpl implements HBaseDao {
             hTable = (HTable) HBaseFactoryBean.getDefaultConnection().getTable(tableName);
             Scan scan = new Scan();
             if (StringUtils.isNotBlank(startRow)) {
-                RowFilter rowFilter = new RowFilter(CompareFilter.CompareOp.GREATER, new BinaryComparator(Bytes.toBytes(startRow)));
-                scan.setFilter(rowFilter);
+                scan.setStartRow(startRow.getBytes());
             }
             if (StringUtils.isNotBlank(endRow)) {
                 scan.setStopRow(endRow.getBytes());

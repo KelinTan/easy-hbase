@@ -1,7 +1,0 @@
-hbase: #自定义的属性和值
-  config:  #List
-    zookeeperQuorum:
-      - hmaster001.bj,rs001.bj,rs002.bj,rs003.bj,rs004.bj
-      - uhadoop-jerr3s-master1,uhadoop-jerr3s-master2,uhadoop-jerr3s-core1,uhadoop-jerr3s-core2,uhadoop-jerr3s-core3,uhadoop-jerr3s-core4,uhadoop-jerr3s-core5
-debug:
-  true
