@@ -2,23 +2,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mop.springcloud.corebase</groupId>
     <artifactId>easy-hbase-spring-boot-demo</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>easy-hbase-spring-boot-demo</name>
     <url>http://maven.apache.org</url>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <groupId>com.gaoxin.mop</groupId>
+        <artifactId>easy-hbase</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -29,18 +23,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.mop.springcloud.corebase</groupId>
+            <groupId>com.gaoxin.mop</groupId>
             <artifactId>easy-hbase-spring-boot-starter</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.mop.springcloud.corebase</groupId>
-            <artifactId>mop-spring-boot-starter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 </project>
