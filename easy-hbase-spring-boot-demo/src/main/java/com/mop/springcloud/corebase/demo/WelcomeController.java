@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Author: Mr.tan
- * Date:  2017/09/05
+ * Author: Mr.tan Date:  2017/09/05
  */
 
 @RestController
 @RequestMapping("/welcome")
 public class WelcomeController {
-
 
     @Autowired
     private HBaseDao hBaseDao;
@@ -29,7 +27,6 @@ public class WelcomeController {
         System.out.println(hBaseDao.get("mop_articles_desc", "7703046885167257003", Article.class));
         return "hello";
     }
-
 
     @RequestMapping("hello")
     public String hello() {

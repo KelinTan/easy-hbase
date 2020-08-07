@@ -4,9 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Author: Mr.tan
- * Date:  2018/3/20
- * Description: mop-hbase-spring-boot-starter-demo
+ * Author: Mr.tan Date:  2018/3/20 Description: mop-hbase-spring-boot-starter-demo
  */
 @SpringBootApplication
 public class Application {

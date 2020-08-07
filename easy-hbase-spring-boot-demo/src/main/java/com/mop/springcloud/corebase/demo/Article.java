@@ -1,24 +1,21 @@
 package com.mop.springcloud.corebase.demo;
 
 
-import com.gaoxin.mop.annotation.HBaseColumn;
 import com.gaoxin.mop.annotation.RowKey;
-import com.gaoxin.mop.constants.HBaseConstant;
 
 /**
  * Demo Bean
  * <p>
- * use @RowKey indicates the rowkey from the hbase
- * use @HBaseColumn indicate the column mapping with the hbase qualifier
+ * use @RowKey indicates the rowkey from the hbase use @HBaseColumn indicate the column mapping with the hbase
+ * qualifier
  * </p>
- *
  */
 public class Article {
 
     @RowKey
     private String rowkey;
 
-    private String articletp ;
+    private String articletp;
 
 
     private Integer articleid;

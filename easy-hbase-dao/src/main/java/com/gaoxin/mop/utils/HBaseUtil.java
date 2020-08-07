@@ -23,8 +23,6 @@ import java.util.List;
  */
 @SuppressWarnings("unchecked")
 public class HBaseUtil {
-
-
     public static <T> List<Put> putObjectList(List<T> objectList) {
 
         if (objectList.isEmpty()) {
@@ -193,44 +191,30 @@ public class HBaseUtil {
         T instance;
         switch (classType) {
             case "class java.lang.String":
-                instance = (T) value;
-                break;
             case "char":
                 instance = (T) value;
                 break;
             case "int":
-                instance = (T) Integer.valueOf(value);
-                break;
             case "class java.lang.Integer":
                 instance = (T) Integer.valueOf(value);
                 break;
             case "class java.lang.Long":
-                instance = (T) Long.valueOf(Bytes.toLong(values));
-                break;
             case "long":
                 instance = (T) Long.valueOf(Bytes.toLong(values));
                 break;
             case "class java.lang.Double":
-                instance = (T) Double.valueOf(value);
-                break;
             case "double":
                 instance = (T) Double.valueOf(value);
                 break;
             case "class java.lang.Float":
-                instance = (T) Float.valueOf(value);
-                break;
             case "float":
                 instance = (T) Float.valueOf(value);
                 break;
             case "class java.lang.Byte":
-                instance = (T) Byte.valueOf(value);
-                break;
             case "byte":
                 instance = (T) Byte.valueOf(value);
                 break;
             case "class java.lang.Short":
-                instance = (T) Short.valueOf(value);
-                break;
             case "short":
                 instance = (T) Short.valueOf(value);
                 break;
