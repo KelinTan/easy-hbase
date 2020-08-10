@@ -4,8 +4,8 @@ package com.kelin.easy.hbase;
 
 import com.kelin.easy.hbase.core.FakeHBaseConnectionService;
 import com.kelin.easy.hbase.core.HBaseConnectionService;
-import com.kelin.easy.hbase.dao.HBaseService;
-import com.kelin.easy.hbase.dao.impl.HBaseServiceImpl;
+import com.kelin.easy.hbase.core.HBaseService;
+import com.kelin.easy.hbase.core.HBaseServiceImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
