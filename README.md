@@ -3,7 +3,7 @@
 1. 重新梳理项目结构
 2. 升级HBase版本到2.0.0
 3. 支持HBaseTest用于单元测试 && 集成测试
-4. 升级SpringBoo版本到最新
+4. 升级SpringBoot版本2.0.9
 5. Gradle构建替换Maven
 6. 梳理代码.重写初始化逻辑
 
