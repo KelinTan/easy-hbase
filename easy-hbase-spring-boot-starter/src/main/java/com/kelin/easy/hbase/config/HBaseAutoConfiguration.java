@@ -1,8 +1,7 @@
-// Copyright 2020 Alo7 Inc. All rights reserved.
+// Copyright 2020 Kelin Tan Inc. All rights reserved.
 
 package com.kelin.easy.hbase.config;
 
-import com.kelin.easy.hbase.core.FakeHBaseConnectionService;
 import com.kelin.easy.hbase.core.HBaseConnectionService;
 import com.kelin.easy.hbase.core.HBaseConnectionServiceImpl;
 import com.kelin.easy.hbase.dao.HBaseService;
@@ -13,8 +12,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
 
 /**
  * @author Kelin Tan
@@ -31,15 +28,6 @@ public class HBaseAutoConfiguration {
     public HBaseService createHBaseService() {
         HBaseConnectionService connectionService = new HBaseConnectionServiceImpl(hBaseConfig.getZookeeperQuorum(),
                 hBaseConfig.getZookeeperClientPort());
-        return new HBaseServiceImpl(connectionService);
-    }
-
-    @Bean
-    @ConditionalOnMissingBean(HBaseService.class)
-    @Profile("test")
-    @Primary
-    public HBaseService createFakeHBaseService() {
-        HBaseConnectionService connectionService = new FakeHBaseConnectionService();
         return new HBaseServiceImpl(connectionService);
     }
 }
