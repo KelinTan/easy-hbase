@@ -26,10 +26,8 @@
 
 1.  项目结构
     
--   easy-hbase-core：主要包括一些基础的Bean和Annotation，常量和工具类
--   easy-hbase-dao：主要代码，包括HBase相关操作代码封装和查询映射等，可直接spring集成使用
+-   easy-hbase-core： 核心代码
 -   easy-hbase-spring-boot-starter：一个简单的spring-boot-starter，适合spring-boot项目集成使用
--   easy-hbase-spring-boot-demo：一个简单的spring-boot-demo项目，演示集成使用
 
 2\. 核心类
 
@@ -95,7 +93,7 @@ public @interface RowKey {
 package com.gaoxin.mop.bean;
 
 
-import com.gaoxin.mop.constants.HBaseConstant;
+import HBaseConstant;
 import org.apache.hadoop.hbase.filter.CompareFilter;
 
 /**
@@ -194,83 +192,6 @@ public class ColumnInfo {
 > 
 > compareOperator：比较器属性，可以设置这个值用于在HBase限制返回column和值过滤的时候传入，可取的值：EQUAL|NOT EQUAL|GREATER等，我们这个类默认EQUAL
 
--   HBaseFactoryBean：HBase的连接初始化工厂Bean，用于初始化HBase连接
-
-```java
-package com.gaoxin.mop.config;
-
-import com.gaoxin.mop.constants.HBaseConstant;
-import org.apache.commons.lang.StringUtils;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hbase.HBaseConfiguration;
-import org.apache.hadoop.hbase.client.HConnection;
-import org.apache.hadoop.hbase.client.HConnectionManager;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Author: Mr.tan
- * Date:  2017/08/18
- * <p>
- * HBaseConstant 配置载入。初始化连接
- */
-@Component
-public class HBaseFactoryBean {
-
-    private static HBaseFactoryBean factoryBean = null;
-
-    private HBaseFactoryBean() {
-
-    }
-
-    public static HBaseFactoryBean getInstance() {
-        if (factoryBean == null) {
-            factoryBean = new HBaseFactoryBean();
-        }
-        return factoryBean;
-    }
-
-    private static List<HConnection> connections;
-
-    private List<HBaseConfig> hbaseConfigs;
-
-    public static void setConnections(List<HConnection> connections) {
-        HBaseFactoryBean.connections = connections;
-    }
-
-    public void setHbaseConfigs(List<HBaseConfig> hbaseConfigs) {
-        this.hbaseConfigs = hbaseConfigs;
-    }
-
-    public void initializeConnections() throws Exception {
-        connections = new ArrayList<>();
-        if (hbaseConfigs == null) {
-            throw new RuntimeException("hbase config is null error");
-        }
-        for (HBaseConfig config : hbaseConfigs) {
-            Configuration configuration = HBaseConfiguration.create();
-            configuration.set("hbase.zookeeper.quorum", config.getZookeeperQuorum());
-            configuration.set("hbase.zookeeper.property.clientPort", StringUtils.isBlank(config.getZookeeperClientPort()) ? HBaseConstant.DEFAULT_HBASE_PORT : config.getZookeeperClientPort());
-            HConnection connection = HConnectionManager.createConnection(configuration);
-            connections.add(connection);
-        }
-
-    }
-
-    public static HConnection getDefaultConnection() {
-        return connections.get(0);
-    }
-
-    public static HConnection getSpecifyConnection(int index) {
-        if (index > connections.size() - 1) {
-            throw new RuntimeException("hbase connection is not exist");
-        }
-        return connections.get(index);
-    }
-}
-
 ```
 
 -    HBaseDao：HBase基础操作核心类
@@ -279,7 +200,7 @@ public class HBaseFactoryBean {
 package com.gaoxin.mop.dao;
 
 
-import com.gaoxin.mop.bean.ColumnInfo;
+import ColumnInfo;
 
 import java.util.List;
 
@@ -396,5 +317,5 @@ public interface HBaseDao {
 
 4.使用
 
-- spring-boot可以参考spring-boot-demo引入对应的starter和配置hbase基础连接信息即可
-- spring版本可直接引入easy-hbase-dao，配置扫描路径和hbase的基础连接信息即可，参考easy-hbase-dao的test
+- 可以直接引入easy-hbase-core初始化对应连接后使用
+- spring-boot可以引入对应的starter和配置hbase基础连接信息即可
