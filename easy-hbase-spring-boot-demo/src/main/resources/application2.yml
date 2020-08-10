@@ -1,7 +1,0 @@
-#yml配置方法
-hbase: #自定义的属性和值
-  config:
-    zookeeperQuorum:
-      hmaster001.bj,rs001.bj,rs002.bj,rs003.bj,rs004.bj
-debug:
-  true

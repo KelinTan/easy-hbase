@@ -1,2 +1,3 @@
-#配置自定义Starter的自动化配置
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.gaoxin.mop.HBaseTemplateAutoConfigure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.kelin.easy.hbase.config.HBaseConfig,\
+  com.kelin.easy.hbase.config.HBaseAutoConfiguration
