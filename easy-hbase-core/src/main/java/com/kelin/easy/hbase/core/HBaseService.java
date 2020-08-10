@@ -51,7 +51,7 @@ public interface HBaseService {
 
     <T> List<T> getList(String tableName, List<ColumnInfo> columns, List<ColumnInfo> filters, Class<? extends T> clazz);
 
-    <T> List<T> getList(String tableName, List<ColumnInfo> columns, List<ColumnInfo> filters, String start, String end, Class<? extends T> clazz);
+    <T> List<T> getList(String tableName, List<ColumnInfo> columns, List<ColumnInfo> filters, String startRow, String endRow, Class<? extends T> clazz);
 
     <T> List<T> getPageList(String tableName, String startRow, String endRow, Integer pageSize, Class<? extends T> clazz);
 
