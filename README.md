@@ -207,8 +207,6 @@ public class ColumnInfo {
 -    HBaseDao：HBase基础操作核心类
 
 ```java
-package com.gaoxin.mop.dao;
-
 
 import ColumnInfo;
 

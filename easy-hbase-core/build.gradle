@@ -1,4 +1,4 @@
-description = 'easy-hbase-dao'
+description = 'easy-hbase-core'
 dependencies {
     compile(group: 'org.apache.hbase', name: 'hbase-client', version: '2.0.0') {
     }

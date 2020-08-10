@@ -1,4 +1,4 @@
-package com.kelin.easy.hbase.dao;
+package com.kelin.easy.hbase.core;
 
 
 import com.kelin.easy.hbase.bean.ColumnInfo;
