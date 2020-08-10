@@ -1,4 +1,4 @@
-// Copyright 2020 Alo7 Inc. All rights reserved.
+// Copyright 2020 Kelin Tan Inc. All rights reserved.
 
 package com.kelin.easy.hbase.core;
 
