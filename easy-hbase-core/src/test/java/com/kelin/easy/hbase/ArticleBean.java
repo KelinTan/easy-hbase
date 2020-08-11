@@ -10,19 +10,19 @@ public class ArticleBean {
     public ArticleBean() {
     }
 
-    public ArticleBean(String rowkey, int type, String title, Long status, Boolean pubilshed) {
+    public ArticleBean(String rowkey, int type, String title, Long status, Boolean published) {
         this.rowkey = rowkey;
         this.type = type;
         this.title = title;
         this.status = status;
-        this.pubilshed = pubilshed;
+        this.published = published;
     }
 
     private String rowkey;//rowkey
     private Integer type;
     private String title;
     private Long status;
-    private Boolean pubilshed;
+    private Boolean published;
 
     public String getRowkey() {
         return rowkey;
@@ -56,11 +56,11 @@ public class ArticleBean {
         this.status = status;
     }
 
-    public Boolean getPubilshed() {
-        return pubilshed;
+    public Boolean getPublished() {
+        return published;
     }
 
-    public void setPubilshed(Boolean pubilshed) {
-        this.pubilshed = pubilshed;
+    public void setPublished(Boolean published) {
+        this.published = published;
     }
 }
