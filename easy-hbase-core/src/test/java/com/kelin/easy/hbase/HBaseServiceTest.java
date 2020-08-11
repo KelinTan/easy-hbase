@@ -1,5 +1,8 @@
 package com.kelin.easy.hbase;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.atIndex;
+
 import com.google.common.collect.Lists;
 import com.kelin.easy.hbase.bean.ColumnInfo;
 import com.kelin.easy.hbase.constants.HBaseConstant;
@@ -48,15 +51,15 @@ public class HBaseServiceTest {
         List<ColumnInfo> list = new ArrayList<>();
         list.add(new ColumnInfo("title"));
         ArticleBean articleBean = service.get(DEFAULT_TABLE, "123", list, ArticleBean.class);
-        Assert.assertNotNull(articleBean);
-        Assert.assertNull(articleBean.getStatus());
-        Assert.assertEquals("测试123", articleBean.getTitle());
+
+        assertThat(articleBean).isNotNull();
+        assertThat(articleBean.getStatus()).isNull();
+        assertThat(articleBean.getTitle()).isEqualTo("测试123");
     }
 
     @Test
     public void testGetSingleColumnValue() {
-        String title = service.getSingleColumnValue(DEFAULT_TABLE, "123", "title");
-        Assert.assertEquals("测试123", title);
+        assertThat(service.getSingleColumnValue(DEFAULT_TABLE, "123", "title")).isEqualTo("测试123");
     }
 
     @Test
@@ -70,53 +73,46 @@ public class HBaseServiceTest {
         columnInfo.setValueClass(Integer.class);
         filters.add(columnInfo);
 
-        ArticleBean bean = service.get(DEFAULT_TABLE, "123", null, filters, ArticleBean.class);
-        Assert.assertNull(bean);
-
-        Assert.assertNotNull(service.get(DEFAULT_TABLE, "123", null, null, ArticleBean.class));
+        assertThat(service.get(DEFAULT_TABLE, "123", null, filters, ArticleBean.class)).isNull();
+        assertThat(service.get(DEFAULT_TABLE, "123", null, null, ArticleBean.class)).isNotNull();
     }
 
     @Test
     public void testGetColumns() {
-        List<ColumnInfo> columns = service.getColumns(DEFAULT_TABLE, "123");
-        Assert.assertEquals(4, columns.size());
-        Assert.assertEquals("published", columns.get(0).getColumn());
-        Assert.assertEquals("true", columns.get(0).getValue());
+        assertThat(service.getColumns(DEFAULT_TABLE, "123"))
+                .hasSize(4)
+                .first()
+                .isEqualToIgnoringNullFields(new ColumnInfo(null, "published", "true", null));
     }
 
     @Test
     public void testGetRowKeys() {
-        List<String> rowKeys = service.getRowKeys(DEFAULT_TABLE);
-
-        Assert.assertEquals(3, rowKeys.size());
-        Assert.assertEquals("123", rowKeys.get(0));
-        Assert.assertEquals("124", rowKeys.get(1));
+        assertThat(service.getRowKeys(DEFAULT_TABLE))
+                .hasSize(3)
+                .contains("123", atIndex(0))
+                .contains("124", atIndex(1));
     }
 
     @Test
     public void testGetRowKeysByPrefix() {
-        List<String> rowKeys = service.getRowKeysByPrefix(DEFAULT_TABLE, "13");
-
-        Assert.assertEquals(1, rowKeys.size());
-        Assert.assertEquals("135", rowKeys.get(0));
+        assertThat(service.getRowKeysByPrefix(DEFAULT_TABLE, "13"))
+                .hasSize(1)
+                .contains("135", atIndex(0));
     }
 
     @Test
     public void testRowKeysPage() {
-        List<String> rowKeys = service.getRowKeys(DEFAULT_TABLE, "123", "124", 1);
-        Assert.assertEquals(1, rowKeys.size());
-        Assert.assertEquals("123", rowKeys.get(0));
+        assertThat(service.getRowKeys(DEFAULT_TABLE, "123", "124", 1))
+                .hasSize(1)
+                .contains("123", atIndex(0));
     }
 
     @Test
     public void testGetList() {
-        List<ArticleBean> list = service.getList(DEFAULT_TABLE, Lists.newArrayList("123", "124"), ArticleBean.class);
-
-        Assert.assertEquals(2, list.size());
-        Assert.assertEquals(1, (int) list.get(0).getType());
-        Assert.assertEquals("测试123", list.get(0).getTitle());
-        Assert.assertEquals(2L, (long) list.get(0).getStatus());
-        Assert.assertTrue(list.get(0).getPublished());
+        assertThat(service.getList(DEFAULT_TABLE, Lists.newArrayList("123", "124"), ArticleBean.class))
+                .hasSize(2)
+                .first()
+                .isEqualToIgnoringNullFields(new ArticleBean("123", 1, "测试123", 2L, true));
     }
 
     @Test

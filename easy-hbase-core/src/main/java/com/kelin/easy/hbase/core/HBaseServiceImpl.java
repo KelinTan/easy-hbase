@@ -54,7 +54,6 @@ public class HBaseServiceImpl implements HBaseService {
         }
         T instance = null;
         try (HTable hTable = getTable(tableName);) {
-
             Get get = new Get(rowKey.getBytes());
             HBaseUtil.setColumnAndFilter(get, columns, filters);
             Result rs = hTable.get(get);
@@ -90,7 +89,6 @@ public class HBaseServiceImpl implements HBaseService {
         }
         T t = null;
         try (HTable hTable = getTable(tableName);) {
-
             Get get = new Get(Bytes.toBytes(rowKey));
             get.addColumn(HBaseConstant.DEFAULT_FAMILY.getBytes(), column.getBytes());
             Result result = hTable.get(get);
@@ -186,7 +184,6 @@ public class HBaseServiceImpl implements HBaseService {
             List<ColumnInfo> filters) {
         List<ColumnInfo> dataList = new ArrayList<>();
         try (HTable hTable = getTable(tableName);) {
-
             Get get = new Get(Bytes.toBytes(rowKey));
             get.addFamily(columnFamily.getBytes());
             HBaseUtil.setColumnAndFilter(get, columns, filters);
@@ -397,7 +394,7 @@ public class HBaseServiceImpl implements HBaseService {
             Result result = hTable.get(get);
 
             for (Cell cell : result.rawCells()) {
-                String value = new String(CellUtil.cloneValue(cell), "utf-8");
+                String value = new String(CellUtil.cloneValue(cell), Charsets.UTF_8.name());
                 dataList.add(JSONObject.parseObject(value, clazz));
             }
         } catch (Exception e) {
@@ -408,17 +405,16 @@ public class HBaseServiceImpl implements HBaseService {
 
     @Override
     public <T> boolean put(String tableName, List<T> objects) {
-        boolean isSucess = false;
         try (HTable hTable = getTable(tableName);) {
             List<Put> puts = HBaseUtil.putObjectList(objects);
             if (puts != null && puts.size() > 0) {
                 hTable.put(puts);
             }
-            isSucess = true;
+            return true;
         } catch (Exception e) {
             logError(e);
         }
-        return isSucess;
+        return false;
     }
 
     @Override
