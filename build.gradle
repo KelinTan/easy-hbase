@@ -1,32 +1,31 @@
-allprojects  {
-  apply plugin: 'maven'
+allprojects {
+    apply plugin: 'maven'
 
-  group = 'com.github.kelin'
-version = '2.0.0-SNAPSHOT'
+    group = 'com.github.kelin'
+    version = '2.0.0-SNAPSHOT'
 }
 
 subprojects {
-  apply plugin: 'java'
-  sourceCompatibility = 1.8
-  targetCompatibility = 1.8
-  tasks.withType(JavaCompile) {
-  	options.encoding = 'UTF-8'
-  }
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
 
-  task packageSources(type: Jar) {
-classifier = 'sources'
-from sourceSets.main.allSource
+    task packageSources(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
 
+    }
+    artifacts.archives packageSources
+    repositories {
+        mavenLocal()
+
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://repo.maven.apache.org/maven2" }
+    }
 }
-artifacts.archives packageSources
-  repositories {
-    mavenLocal()
-    
-    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
-    maven { url "http://repo.maven.apache.org/maven2" }
-  }
 
-  
-  
-  
-}
+defaultTasks("test")
+
