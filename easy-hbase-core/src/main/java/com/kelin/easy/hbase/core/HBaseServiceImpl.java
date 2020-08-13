@@ -1,12 +1,12 @@
 package com.kelin.easy.hbase.core;
 
 
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import com.kelin.easy.hbase.bean.ColumnInfo;
 import com.kelin.easy.hbase.constants.HBaseConstant;
+import com.kelin.easy.hbase.json.JsonConverter;
 import com.kelin.easy.hbase.utils.HBaseUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.hbase.Cell;
@@ -373,7 +373,7 @@ public class HBaseServiceImpl implements HBaseService {
 
             for (Cell cell : result.rawCells()) {
                 String value = new String(CellUtil.cloneValue(cell), Charsets.UTF_8.name());
-                dataList.add(JSONObject.parseObject(value, clazz));
+                dataList.add(JsonConverter.deserialize(value, clazz));
             }
         } catch (Exception e) {
             logError(e);
@@ -395,7 +395,7 @@ public class HBaseServiceImpl implements HBaseService {
 
             for (Cell cell : result.rawCells()) {
                 String value = new String(CellUtil.cloneValue(cell), Charsets.UTF_8.name());
-                dataList.add(JSONObject.parseObject(value, clazz));
+                dataList.add(JsonConverter.deserialize(value, clazz));
             }
         } catch (Exception e) {
             logError(e);
