@@ -3,15 +3,17 @@ package com.kelin.easy.hbase.core;
 
 import com.kelin.easy.hbase.bean.ColumnInfo;
 
+import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 /**
- * @author Kelin Tan
- * Date:  2017/08/18
+ * @author Kelin Tan Date:  2017/08/18
  */
 public interface HBaseService {
 
-    <T> T get(String tableName, String rowKey, List<ColumnInfo> columns, List<ColumnInfo> filters, Class<? extends T> clazz);
+    <T> T get(@NotNull String tableName, String rowKey, List<ColumnInfo> columns, List<ColumnInfo> filters,
+            Class<? extends T> clazz);
 
     <T> T get(String tableName, String rowKey, Class<? extends T> clazz);
 
@@ -25,7 +27,8 @@ public interface HBaseService {
 
     List<String> getRowKeys(String tableName, String startRow, String endRow);
 
-    List<String> getRowKeys(String tableName, String startRow, String endRow, Integer pageSize, String separate, Integer index);
+    List<String> getRowKeys(String tableName, String startRow, String endRow, Integer pageSize, String separate,
+            Integer index);
 
     List<String> getRowKeys(String tableName, String startRow, String endRow, Integer pageSize, String separate);
 
@@ -35,7 +38,8 @@ public interface HBaseService {
 
     List<String> getRowKeysByPrefix(String tableName, String startRow, String endRow, String prefix);
 
-    List<ColumnInfo> getColumns(String tableName, String rowKey, String columnFamily, List<ColumnInfo> columns, List<ColumnInfo> filters);
+    List<ColumnInfo> getColumns(String tableName, String rowKey, String columnFamily, List<ColumnInfo> columns,
+            List<ColumnInfo> filters);
 
     List<ColumnInfo> getColumns(String tableName, String rowKey, List<ColumnInfo> columns, List<ColumnInfo> filters);
 
@@ -45,25 +49,30 @@ public interface HBaseService {
 
     <T> List<T> getList(String tableName, List<String> rowKeys, Class<? extends T> clazz);
 
-    <T> List<T> getList(String tableName, List<String> rowKeys,List<ColumnInfo> columns, List<ColumnInfo> filters, Class<? extends T> clazz);
+    <T> List<T> getList(String tableName, List<String> rowKeys, List<ColumnInfo> columns, List<ColumnInfo> filters,
+            Class<? extends T> clazz);
 
     <T> List<T> getList(String tableName, Class<? extends T> clazz);
 
     <T> List<T> getList(String tableName, List<ColumnInfo> columns, List<ColumnInfo> filters, Class<? extends T> clazz);
 
-    <T> List<T> getList(String tableName, List<ColumnInfo> columns, List<ColumnInfo> filters, String startRow, String endRow, Class<? extends T> clazz);
+    <T> List<T> getList(String tableName, List<ColumnInfo> columns, List<ColumnInfo> filters, String startRow,
+            String endRow, Class<? extends T> clazz);
 
-    <T> List<T> getPageList(String tableName, String startRow, String endRow, Integer pageSize, Class<? extends T> clazz);
+    <T> List<T> getPageList(String tableName, String startRow, String endRow, Integer pageSize,
+            Class<? extends T> clazz);
 
     List<ColumnInfo> getColumnsByPage(String tableName, String rowKey, Integer pageNo, Integer pageSize);
 
-    List<ColumnInfo> getColumnsByPage(String tableName, String rowKey, Integer pageNo, Integer pageSize, List<ColumnInfo> columns, List<ColumnInfo> filters);
+    List<ColumnInfo> getColumnsByPage(String tableName, String rowKey, Integer pageNo, Integer pageSize,
+            List<ColumnInfo> columns, List<ColumnInfo> filters);
 
-    <T> T getColumnObj(String tableName, String rowKey, String column,Class<? extends T> clazz);
+    <T> T getColumnObj(String tableName, String rowKey, String column, Class<? extends T> clazz);
 
-    <T> List<T> getColumnObjList(String tableName, String rowKey, List<String> columns,Class<? extends T> clazz);
+    <T> List<T> getColumnObjList(String tableName, String rowKey, List<String> columns, Class<? extends T> clazz);
 
-    <T> List<T> getPageColumnObjList(String tableName, String rowKey, Integer pageNo,Integer pageSize,Class<? extends T> clazz);
+    <T> List<T> getPageColumnObjList(String tableName, String rowKey, Integer pageNo, Integer pageSize,
+            Class<? extends T> clazz);
 
     <T> boolean put(String tableName, List<T> objects);
 
@@ -73,7 +82,7 @@ public interface HBaseService {
 
     boolean put(String tableName, String rowKey, ColumnInfo columnInfo);
 
-    boolean put(String tableName, String rowKey, List<ColumnInfo> columnInfos);
+    boolean put(String tableName, String rowKey, List<ColumnInfo> columns);
 
     boolean delete(String tableName, String rowKey);
 
