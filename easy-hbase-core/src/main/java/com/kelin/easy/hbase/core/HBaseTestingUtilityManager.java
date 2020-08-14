@@ -26,6 +26,7 @@ public class HBaseTestingUtilityManager {
 
     static {
         Configuration config = HBaseConfiguration.create();
+        //fix issue https://issues.apache.org/jira/browse/HBASE-20544?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel
         config.setInt(HConstants.REGIONSERVER_PORT, 0);
         utility = new HBaseTestingUtility(config);
         try {
