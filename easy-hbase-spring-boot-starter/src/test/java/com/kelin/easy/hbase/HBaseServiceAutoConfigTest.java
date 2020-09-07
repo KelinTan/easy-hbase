@@ -2,9 +2,9 @@
 
 package com.kelin.easy.hbase;
 
-import com.kelin.easy.hbase.constants.HBaseConstant;
-import com.kelin.easy.hbase.core.HBaseTestingUtilityManager;
+import com.kelin.easy.hbase.common.constants.HBaseConstant;
 import com.kelin.easy.hbase.core.HBaseService;
+import com.kelin.easy.hbase.systest.HBaseTestingUtilityManager;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

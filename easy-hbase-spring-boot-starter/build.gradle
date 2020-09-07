@@ -2,11 +2,12 @@
 description = 'easy-hbase-spring-boot-starter'
 dependencies {
     compile project(':easy-hbase-core')
-    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: '2.0.9.RELEASE'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.1'
-    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.9.RELEASE') {
+    testCompile project(':easy-hbase-systest')
+    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure'
+    testCompile group: 'junit', name: 'junit'
+    testCompile group: 'org.assertj', name: 'assertj-core'
+    testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test') {
         exclude(module: 'spring-boot-starter-logging')
     }
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-test-autoconfigure', version: '2.0.9.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-test-autoconfigure'
 }

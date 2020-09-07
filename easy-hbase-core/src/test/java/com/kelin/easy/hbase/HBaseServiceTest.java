@@ -4,13 +4,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.atIndex;
 
 import com.google.common.collect.Lists;
-import com.kelin.easy.hbase.bean.ColumnInfo;
-import com.kelin.easy.hbase.constants.HBaseConstant;
-import com.kelin.easy.hbase.core.FakeHBaseConnectionService;
+import com.kelin.easy.hbase.common.bean.ColumnInfo;
+import com.kelin.easy.hbase.common.constants.HBaseConstant;
 import com.kelin.easy.hbase.core.HBaseService;
 import com.kelin.easy.hbase.core.HBaseServiceImpl;
-import com.kelin.easy.hbase.core.HBaseTestingUtilityManager;
+import com.kelin.easy.hbase.systest.FakeHBaseConnectionService;
+import com.kelin.easy.hbase.systest.HBaseTestingUtilityManager;
 import org.apache.hadoop.hbase.CompareOperator;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -44,6 +45,11 @@ public class HBaseServiceTest {
         articleBeans.add(new ArticleBean("135", 3, "测试", 2L, true));
         service.put(DEFAULT_TABLE, articleBeans);
         service.put(DEMO_TABLE, "test", "1", "2");
+    }
+
+    @AfterClass
+    public static void shutdown() throws Exception {
+        HBaseTestingUtilityManager.getInstance().shutdownMiniCluster();
     }
 
     @Test

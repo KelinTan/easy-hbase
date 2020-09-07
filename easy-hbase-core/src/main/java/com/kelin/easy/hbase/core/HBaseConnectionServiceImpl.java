@@ -2,7 +2,8 @@
 
 package com.kelin.easy.hbase.core;
 
-import com.kelin.easy.hbase.constants.HBaseConstant;
+import com.kelin.easy.hbase.common.bean.HBaseConnectionService;
+import com.kelin.easy.hbase.common.constants.HBaseConstant;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -15,8 +16,8 @@ import java.io.IOException;
  * @author Kelin Tan
  */
 public class HBaseConnectionServiceImpl implements HBaseConnectionService {
-    private String zookeeperQuorum;
-    private String zookeeperClientPort;
+    private final String zookeeperQuorum;
+    private final String zookeeperClientPort;
     private volatile static Connection connection;
 
     public HBaseConnectionServiceImpl(String zookeeperQuorum, String zookeeperClientPort) {

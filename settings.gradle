@@ -1,6 +1,10 @@
 rootProject.name = 'easy-hbase'
 include ':easy-hbase-core'
 include ':easy-hbase-spring-boot-starter'
+include ':easy-hbase-systest'
+include ':easy-hbase-common'
 
 project(':easy-hbase-core').projectDir = "$rootDir/easy-hbase-core" as File
 project(':easy-hbase-spring-boot-starter').projectDir = "$rootDir/easy-hbase-spring-boot-starter" as File
+project(':easy-hbase-systest').projectDir = "$rootDir/easy-hbase-systest" as File
+project(':easy-hbase-common').projectDir = "$rootDir/easy-hbase-common" as File

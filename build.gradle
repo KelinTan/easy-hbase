@@ -1,3 +1,16 @@
+buildscript {
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+    }
+
+    repositories {
+        mavenLocal()
+
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://repo.maven.apache.org/maven2" }
+    }
+}
+
 allprojects {
     apply plugin: 'maven'
 
@@ -7,6 +20,25 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: "io.spring.dependency-management"
+
+    dependencyManagement {
+        dependencies {
+            dependency "org.apache.hbase:hbase-client:$hbaseVersion"
+            dependency "org.apache.hbase:hbase-testing-util:$hbaseVersion"
+            dependency "org.springframework.boot:spring-boot-autoconfigure:$springBootVersion"
+            dependency "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+            dependency "org.springframework.boot:spring-boot-test-autoconfigure:$springBootVersion"
+            dependency group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.6'
+            dependency group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.6'
+            dependency group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.6'
+            dependency group: 'junit', name: 'junit', version: '4.12'
+            dependency group: 'org.assertj', name: 'assertj-core', version: '3.16.1'
+            dependency group: 'com.google.guava', name: 'guava', version: '18.0'
+            dependency group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
+        }
+    }
+
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
     tasks.withType(JavaCompile) {

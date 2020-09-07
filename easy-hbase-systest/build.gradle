@@ -1,0 +1,10 @@
+description = 'easy-hbase-systest'
+dependencies {
+    compile project(':easy-hbase-common')
+    compile(group: 'org.apache.hbase', name: 'hbase-testing-util') {
+        exclude(module: 'commons-math3')
+        exclude(module: 'httpclient')
+        exclude(module: 'httpcore')
+        exclude(module: 'javax.el')
+    }
+}

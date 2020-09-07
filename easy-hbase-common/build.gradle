@@ -1,0 +1,8 @@
+description = 'easy-hbase-common'
+dependencies {
+    compile group: 'org.apache.hbase', name: 'hbase-client'
+    compile group: 'com.google.guava', name: 'guava'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind'
+}

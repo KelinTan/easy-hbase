@@ -1,4 +1,4 @@
-package com.kelin.easy.hbase.constants;
+package com.kelin.easy.hbase.common.constants;
 
 
 /**

@@ -3,10 +3,11 @@ package com.kelin.easy.hbase.core;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
-import com.kelin.easy.hbase.bean.ColumnInfo;
-import com.kelin.easy.hbase.constants.HBaseConstant;
-import com.kelin.easy.hbase.json.JsonConverter;
-import com.kelin.easy.hbase.utils.HBaseUtil;
+import com.kelin.easy.hbase.common.bean.ColumnInfo;
+import com.kelin.easy.hbase.common.bean.HBaseConnectionService;
+import com.kelin.easy.hbase.common.constants.HBaseConstant;
+import com.kelin.easy.hbase.common.json.JsonConverter;
+import com.kelin.easy.hbase.common.utils.HBaseUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.hbase.Cell;
@@ -27,8 +28,6 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nullable;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,17 +37,17 @@ import java.util.List;
  * @author Kelin Tan
  */
 public class HBaseServiceImpl implements HBaseService {
-    private HBaseConnectionService connectionService;
+    private final HBaseConnectionService connectionService;
 
-    private static Logger logger = LoggerFactory.getLogger(HBaseServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(HBaseServiceImpl.class);
 
     public HBaseServiceImpl(HBaseConnectionService connectionService) {
         this.connectionService = connectionService;
     }
 
     @Override
-    public <T> T get(String tableName, String rowKey, @Nullable List<ColumnInfo> columns,
-            @Nullable List<ColumnInfo> filters, Class<? extends T> clazz) {
+    public <T> T get(String tableName, String rowKey, List<ColumnInfo> columns, List<ColumnInfo> filters,
+            Class<? extends T> clazz) {
         Preconditions.checkNotNull(clazz);
         Preconditions.checkNotNull(rowKey);
 
@@ -260,7 +259,7 @@ public class HBaseServiceImpl implements HBaseService {
     }
 
     @Override
-    public <T> List<T> getList(String tableName, @Nullable List<ColumnInfo> columns, @Nullable List<ColumnInfo> filters,
+    public <T> List<T> getList(String tableName, List<ColumnInfo> columns, List<ColumnInfo> filters,
             Class<? extends T> clazz) {
         return getList(tableName, columns, filters, null, null, clazz);
     }
