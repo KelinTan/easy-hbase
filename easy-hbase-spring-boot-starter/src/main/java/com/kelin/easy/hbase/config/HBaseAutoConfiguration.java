@@ -2,7 +2,7 @@
 
 package com.kelin.easy.hbase.config;
 
-import com.kelin.easy.hbase.core.HBaseConnectionService;
+import com.kelin.easy.hbase.common.bean.HBaseConnectionService;
 import com.kelin.easy.hbase.core.HBaseConnectionServiceImpl;
 import com.kelin.easy.hbase.core.HBaseService;
 import com.kelin.easy.hbase.core.HBaseServiceImpl;

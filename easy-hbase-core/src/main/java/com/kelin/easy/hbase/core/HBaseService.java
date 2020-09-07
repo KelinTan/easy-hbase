@@ -1,9 +1,7 @@
 package com.kelin.easy.hbase.core;
 
 
-import com.kelin.easy.hbase.bean.ColumnInfo;
-
-import javax.validation.constraints.NotNull;
+import com.kelin.easy.hbase.common.bean.ColumnInfo;
 
 import java.util.List;
 
@@ -12,7 +10,7 @@ import java.util.List;
  */
 public interface HBaseService {
 
-    <T> T get(@NotNull String tableName, String rowKey, List<ColumnInfo> columns, List<ColumnInfo> filters,
+    <T> T get(String tableName, String rowKey, List<ColumnInfo> columns, List<ColumnInfo> filters,
             Class<? extends T> clazz);
 
     <T> T get(String tableName, String rowKey, Class<? extends T> clazz);

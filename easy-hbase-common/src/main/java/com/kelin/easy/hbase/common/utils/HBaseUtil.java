@@ -1,10 +1,9 @@
-package com.kelin.easy.hbase.utils;
+package com.kelin.easy.hbase.common.utils;
 
-
-import com.kelin.easy.hbase.annotation.HBaseColumn;
-import com.kelin.easy.hbase.annotation.RowKey;
-import com.kelin.easy.hbase.bean.ColumnInfo;
-import com.kelin.easy.hbase.constants.HBaseConstant;
+import com.kelin.easy.hbase.common.annotation.HBaseColumn;
+import com.kelin.easy.hbase.common.annotation.RowKey;
+import com.kelin.easy.hbase.common.bean.ColumnInfo;
+import com.kelin.easy.hbase.common.constants.HBaseConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.hbase.CompareOperator;
 import org.apache.hadoop.hbase.client.Get;

@@ -1,6 +1,6 @@
 // Copyright 2020 Kelin Tan Inc. All rights reserved.
 
-package com.kelin.easy.hbase.core;
+package com.kelin.easy.hbase.systest;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -18,11 +18,11 @@ import java.util.Map;
  * @author Kelin Tan
  */
 public class HBaseTestingUtilityManager {
-    private static Logger logger = LoggerFactory.getLogger(HBaseTestingUtilityManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(HBaseTestingUtilityManager.class);
 
-    private static HBaseTestingUtility utility;
+    private static final HBaseTestingUtility utility;
 
-    private static Map<String, Boolean> TABLE_MAP = new HashMap<>();
+    private static final Map<String, Boolean> TABLE_MAP = new HashMap<>();
 
     static {
         Configuration config = HBaseConfiguration.create();
@@ -46,7 +46,7 @@ public class HBaseTestingUtilityManager {
         }
         try {
             utility.createTable(TableName.valueOf(tableName), family);
-            TABLE_MAP.put(tableName, Boolean.TRUE);
+            TABLE_MAP.putIfAbsent(tableName, Boolean.TRUE);
         } catch (IOException e) {
             logger.error("CreateTable error", e);
         }

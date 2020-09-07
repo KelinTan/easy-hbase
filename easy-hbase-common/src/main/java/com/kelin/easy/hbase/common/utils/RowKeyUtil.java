@@ -1,4 +1,4 @@
-package com.kelin.easy.hbase.utils;
+package com.kelin.easy.hbase.common.utils;
 
 
 import org.apache.commons.lang3.StringUtils;

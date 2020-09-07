@@ -1,7 +1,7 @@
-package com.kelin.easy.hbase.bean;
+package com.kelin.easy.hbase.common.bean;
 
 
-import com.kelin.easy.hbase.constants.HBaseConstant;
+import com.kelin.easy.hbase.common.constants.HBaseConstant;
 import org.apache.hadoop.hbase.CompareOperator;
 
 /**
@@ -17,7 +17,7 @@ public class ColumnInfo {
     private String column;
     private String value;
     private CompareOperator compareOperator;
-    private Class valueClass;
+    private Class<?> valueClass;
 
     public ColumnInfo() {
     }
@@ -32,7 +32,7 @@ public class ColumnInfo {
         this.compareOperator = compareOperator;
     }
 
-    public ColumnInfo(String columnFamily, String column, CompareOperator compareOperator, Class valueClass) {
+    public ColumnInfo(String columnFamily, String column, CompareOperator compareOperator, Class<?> valueClass) {
         this(columnFamily, column, compareOperator);
         this.valueClass = valueClass;
     }
@@ -83,11 +83,11 @@ public class ColumnInfo {
         this.value = value;
     }
 
-    public Class getValueClass() {
+    public Class<?> getValueClass() {
         return valueClass;
     }
 
-    public void setValueClass(Class valueClass) {
+    public void setValueClass(Class<?> valueClass) {
         this.valueClass = valueClass;
     }
 }
