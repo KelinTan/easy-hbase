@@ -1,3 +1,5 @@
+![Java CI](https://github.com/KelinTan/easy-hbase/workflows/Java%20CI/badge.svg?branch=master)
+
 ## 2.0.0版本 2020.8.10 更新
 
 1. 重新梳理项目结构
