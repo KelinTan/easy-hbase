@@ -38,8 +38,10 @@
 
 1.  项目结构
     
--   easy-hbase-core： 核心代码
+-   easy-hbase-common: 通用module
+-   easy-hbase-core： 核心service
 -   easy-hbase-spring-boot-starter：一个简单的spring-boot-starter，适合spring-boot项目集成使用
+-   easy-habse-systest 系统测试module,集成`HBaseTestingUtility`用于测试
 
 2\. 核心类
 
