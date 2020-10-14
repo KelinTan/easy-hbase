@@ -21,6 +21,8 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: "io.spring.dependency-management"
+    apply plugin: "jacoco"
+    apply from: rootProject.file("gradle/checkcode.gradle")
 
     dependencyManagement {
         dependencies {
@@ -57,7 +59,25 @@ subprojects {
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url "http://repo.maven.apache.org/maven2" }
     }
+
+
+    test {
+        finalizedBy jacocoTestReport
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+            html.enabled true
+        }
+        afterEvaluate {
+            classDirectories = files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: ['**/entity/**', '**/bean/**', '**/model/**', '**/constants/**', '**/constant/**', '**/response/**', '**/request/**',
+                        '**/exception/**'])
+            })
+        }
+    }
 }
 
-defaultTasks("test")
+defaultTasks("checkcode","test")
 
