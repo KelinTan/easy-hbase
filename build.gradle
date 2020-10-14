@@ -73,11 +73,11 @@ subprojects {
         afterEvaluate {
             classDirectories = files(classDirectories.files.collect {
                 fileTree(dir: it, exclude: ['**/entity/**', '**/bean/**', '**/model/**', '**/constants/**', '**/constant/**', '**/response/**', '**/request/**',
-                        '**/exception/**'])
+                        '**/config/**', '**/HBaseConnectionServiceImpl.class'])
             })
         }
     }
 }
 
-defaultTasks("checkcode","test")
+defaultTasks("checkcode", "test")
 
