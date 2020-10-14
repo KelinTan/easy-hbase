@@ -1,3 +1,5 @@
+// Copyright 2020 Kelin Inc. All rights reserved.
+
 package com.kelin.easy.hbase.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

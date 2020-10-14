@@ -1,5 +1,6 @@
-package com.kelin.easy.hbase.core;
+// Copyright 2020 Kelin Inc. All rights reserved.
 
+package com.kelin.easy.hbase.core;
 
 import com.kelin.easy.hbase.common.bean.ColumnInfo;
 
@@ -9,7 +10,6 @@ import java.util.List;
  * @author Kelin Tan Date:  2017/08/18
  */
 public interface HBaseService {
-
     <T> T get(String tableName, String rowKey, List<ColumnInfo> columns, List<ColumnInfo> filters,
             Class<? extends T> clazz);
 

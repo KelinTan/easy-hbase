@@ -1,3 +1,5 @@
+// Copyright 2020 Kelin Inc. All rights reserved.
+
 package com.kelin.easy.hbase;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,7 +25,6 @@ import java.util.List;
  * @author Kelin Tan
  */
 public class HBaseServiceTest {
-
     private static HBaseService service;
 
     private static final String DEFAULT_TABLE = "article";

@@ -1,3 +1,5 @@
+// Copyright 2020 Kelin Inc. All rights reserved.
+
 package com.kelin.easy.hbase.common.annotation;
 
 import java.lang.annotation.Documented;

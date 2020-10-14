@@ -1,5 +1,6 @@
-package com.kelin.easy.hbase.core;
+// Copyright 2020 Kelin Inc. All rights reserved.
 
+package com.kelin.easy.hbase.core;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
@@ -59,7 +60,6 @@ public class HBaseServiceImpl implements HBaseService {
             if (!rs.isEmpty()) {
                 instance = HBaseUtil.parseObject(clazz, rs);
             }
-
         } catch (Exception e) {
             logError(e);
         }
@@ -105,6 +105,30 @@ public class HBaseServiceImpl implements HBaseService {
         return getRowKeysByPrefix(tableName, null, null, prefix);
     }
 
+    @Override
+    public List<String> getRowKeysByPrefix(String tableName, String startRow, String endRow, String prefix) {
+        List<String> rowKeys = new ArrayList<>();
+
+        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+        Filter kof = new KeyOnlyFilter();
+        if (StringUtils.isNotBlank(prefix)) {
+            Filter prefixFilter = new PrefixFilter(prefix.getBytes());
+            filterList.addFilter(prefixFilter);
+        }
+        filterList.addFilter(kof);
+        Scan scan = getRowScan(startRow, endRow, filterList);
+
+        try (HTable hTable = getTable(tableName); ResultScanner scanner = hTable.getScanner(scan)) {
+            for (Result result : scanner) {
+                if (!result.isEmpty()) {
+                    rowKeys.add(new String(result.getRow()));
+                }
+            }
+        } catch (IOException e) {
+            logError(e);
+        }
+        return rowKeys;
+    }
 
     @Override
     public List<String> getRowKeys(String tableName) {
@@ -150,31 +174,6 @@ public class HBaseServiceImpl implements HBaseService {
     @Override
     public List<String> getRowKeys(String tableName, String startRow, String endRow, Integer pageSize) {
         return getRowKeys(tableName, startRow, endRow, pageSize, null);
-    }
-
-    @Override
-    public List<String> getRowKeysByPrefix(String tableName, String startRow, String endRow, String prefix) {
-        List<String> rowKeys = new ArrayList<>();
-
-        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
-        Filter kof = new KeyOnlyFilter();
-        if (StringUtils.isNotBlank(prefix)) {
-            Filter prefixFilter = new PrefixFilter(prefix.getBytes());
-            filterList.addFilter(prefixFilter);
-        }
-        filterList.addFilter(kof);
-        Scan scan = getRowScan(startRow, endRow, filterList);
-
-        try (HTable hTable = getTable(tableName); ResultScanner scanner = hTable.getScanner(scan)) {
-            for (Result result : scanner) {
-                if (!result.isEmpty()) {
-                    rowKeys.add(new String(result.getRow()));
-                }
-            }
-        } catch (IOException e) {
-            logError(e);
-        }
-        return rowKeys;
     }
 
     @Override
@@ -246,7 +245,6 @@ public class HBaseServiceImpl implements HBaseService {
                     resultList.add(instance);
                 }
             }
-
         } catch (Exception e) {
             logError(e);
         }
@@ -317,7 +315,6 @@ public class HBaseServiceImpl implements HBaseService {
             List<ColumnInfo> columns, List<ColumnInfo> filters) {
         List<ColumnInfo> dataList = new ArrayList<>();
         try (HTable hTable = getTable(tableName)) {
-
             Get get = new Get(Bytes.toBytes(rowKey));
             HBaseUtil.setColumnAndFilter(get, columns, filters);
             if (pageNo != null && pageNo != 0 && pageSize != null && pageSize != 0) {
@@ -529,5 +526,4 @@ public class HBaseServiceImpl implements HBaseService {
     private HTable getTable(String tableName) throws IOException {
         return (HTable) connectionService.getConnection().getTable(TableName.valueOf(tableName));
     }
-
 }

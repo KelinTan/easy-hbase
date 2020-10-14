@@ -1,4 +1,4 @@
-// Copyright 2020 Kelin Tan Inc. All rights reserved.
+// Copyright 2020 Kelin Inc. All rights reserved.
 
 package com.kelin.easy.hbase.config;
 
