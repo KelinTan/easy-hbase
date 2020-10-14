@@ -1,5 +1,6 @@
-package com.kelin.easy.hbase.common.bean;
+// Copyright 2020 Kelin Inc. All rights reserved.
 
+package com.kelin.easy.hbase.common.bean;
 
 import com.kelin.easy.hbase.common.constants.HBaseConstant;
 import org.apache.hadoop.hbase.CompareOperator;
@@ -12,7 +13,6 @@ import org.apache.hadoop.hbase.CompareOperator;
  *         </p>
  */
 public class ColumnInfo {
-
     private String columnFamily;
     private String column;
     private String value;
@@ -46,7 +46,6 @@ public class ColumnInfo {
     }
 
     public ColumnInfo(String columnFamily, String column, String value, CompareOperator compareOperator) {
-
         this(columnFamily, column, compareOperator);
         this.value = value;
     }

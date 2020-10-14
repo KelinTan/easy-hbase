@@ -1,0 +1,12 @@
+apply plugin: "checkstyle"
+
+checkstyle {
+    // try to use "8.11", but some verifications do not work.
+    toolVersion = "8.0"
+    config = resources.text.fromFile(rootProject.file("gradle/checkstyle.xml"))
+}
+
+task checkcode {
+    dependsOn tasks.withType(Checkstyle)
+    group = LifecycleBasePlugin.VERIFICATION_GROUP
+}

@@ -1,4 +1,4 @@
-// Copyright 2020 Kelin Tan Inc. All rights reserved.
+// Copyright 2020 Kelin Inc. All rights reserved.
 
 package com.kelin.easy.hbase.core;
 
@@ -18,7 +18,7 @@ import java.io.IOException;
 public class HBaseConnectionServiceImpl implements HBaseConnectionService {
     private final String zookeeperQuorum;
     private final String zookeeperClientPort;
-    private volatile static Connection connection;
+    private static volatile Connection connection;
 
     public HBaseConnectionServiceImpl(String zookeeperQuorum, String zookeeperClientPort) {
         this.zookeeperQuorum = zookeeperQuorum;

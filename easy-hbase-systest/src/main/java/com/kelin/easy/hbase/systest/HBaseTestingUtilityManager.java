@@ -1,4 +1,4 @@
-// Copyright 2020 Kelin Tan Inc. All rights reserved.
+// Copyright 2020 Kelin Inc. All rights reserved.
 
 package com.kelin.easy.hbase.systest;
 
@@ -20,7 +20,7 @@ import java.util.Map;
 public class HBaseTestingUtilityManager {
     private static final Logger logger = LoggerFactory.getLogger(HBaseTestingUtilityManager.class);
 
-    private static final HBaseTestingUtility utility;
+    private static final HBaseTestingUtility TESTING_UTILITY;
 
     private static final Map<String, Boolean> TABLE_MAP = new HashMap<>();
 
@@ -28,16 +28,16 @@ public class HBaseTestingUtilityManager {
         Configuration config = HBaseConfiguration.create();
         //fix issue https://issues.apache.org/jira/browse/HBASE-20544?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel
         config.setInt(HConstants.REGIONSERVER_PORT, 0);
-        utility = new HBaseTestingUtility(config);
+        TESTING_UTILITY = new HBaseTestingUtility(config);
         try {
-            utility.startMiniCluster();
+            TESTING_UTILITY.startMiniCluster();
         } catch (Exception e) {
             logger.error("StartMiniCluster error", e);
         }
     }
 
     public static HBaseTestingUtility getInstance() {
-        return utility;
+        return TESTING_UTILITY;
     }
 
     public static void createTable(String tableName, String family) {
@@ -45,7 +45,7 @@ public class HBaseTestingUtilityManager {
             return;
         }
         try {
-            utility.createTable(TableName.valueOf(tableName), family);
+            TESTING_UTILITY.createTable(TableName.valueOf(tableName), family);
             TABLE_MAP.putIfAbsent(tableName, Boolean.TRUE);
         } catch (IOException e) {
             logger.error("CreateTable error", e);

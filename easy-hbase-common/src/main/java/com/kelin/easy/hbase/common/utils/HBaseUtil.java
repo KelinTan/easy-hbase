@@ -1,3 +1,5 @@
+// Copyright 2020 Kelin Inc. All rights reserved.
+
 package com.kelin.easy.hbase.common.utils;
 
 import com.kelin.easy.hbase.common.annotation.HBaseColumn;
@@ -16,6 +18,8 @@ import org.apache.hadoop.hbase.filter.FilterList;
 import org.apache.hadoop.hbase.filter.QualifierFilter;
 import org.apache.hadoop.hbase.filter.SingleColumnValueFilter;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -29,8 +33,9 @@ import java.util.List;
  */
 @SuppressWarnings("unchecked")
 public class HBaseUtil {
-    public static <T> List<Put> putObjectList(List<T> objectList) {
+    private static Logger log = LoggerFactory.getLogger(HBaseUtil.class);
 
+    public static <T> List<Put> putObjectList(List<T> objectList) {
         if (objectList.isEmpty()) {
             return null;
         }
@@ -50,8 +55,7 @@ public class HBaseUtil {
                         assert rowBytes != null;
                         put = new Put(rowBytes);
                     } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        log.error("Get field value error", e);
                     }
                     continue;
                 }
@@ -75,7 +79,7 @@ public class HBaseUtil {
                         }
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error("Get field value error", e);
                 }
             }
             puts.add(put);
@@ -91,14 +95,13 @@ public class HBaseUtil {
             Long val = (Long) m.invoke(object);
             if (val != null) {
                 return Bytes.toBytes(val);
-
             }
         }
 
         // 如果类型是String
-        if (type.equals("class java.lang.String")) { // 如果type是类类型，则前面包含"class "，后面跟类名
+        if (type.equals("class java.lang.String")) {
             Method m = object.getClass().getMethod("get" + getMethodName(field.getName()));
-            String val = (String) m.invoke(object);// 调用getter方法获取属性值
+            String val = (String) m.invoke(object);
             if (val != null) {
                 return Bytes.toBytes(val);
             }
@@ -137,10 +140,9 @@ public class HBaseUtil {
             }
         }
         return null;
-
     }
 
-    private static String getMethodName(String fieldName) throws Exception {
+    private static String getMethodName(String fieldName) {
         byte[] items = fieldName.getBytes();
         items[0] = (byte) ((char) items[0] - 'a' + 'A');
         return new String(items);
@@ -284,7 +286,6 @@ public class HBaseUtil {
                             new BinaryComparator(Bytes.toBytes(columnFamily)));
                     filterList.addFilter(filter);
                 }
-
             }
             if (operation instanceof Scan) {
                 ((Scan) operation).setFilter(filterList);
@@ -302,11 +303,10 @@ public class HBaseUtil {
      */
     public static byte[] getValueBytes(String value, Class valueClass) {
         assert value != null;
-        if (valueClass != null && valueClass.getName().equals("java.lang.Long")) { //用于计数器的字节
-            return Bytes.toBytes(Long.valueOf(value));
+        if (valueClass != null && valueClass.getName().equals("java.lang.Long")) {
+            return Bytes.toBytes(Long.parseLong(value));
         } else {
             return value.getBytes();
         }
     }
-
 }

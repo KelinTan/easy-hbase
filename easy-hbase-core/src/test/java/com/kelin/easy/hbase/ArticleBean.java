@@ -1,5 +1,6 @@
-package com.kelin.easy.hbase;
+// Copyright 2020 Kelin Inc. All rights reserved.
 
+package com.kelin.easy.hbase;
 
 /**
  * 帖子
@@ -18,7 +19,7 @@ public class ArticleBean {
         this.published = published;
     }
 
-    private String rowkey;//rowkey
+    private String rowkey;
     private Integer type;
     private String title;
     private Long status;
