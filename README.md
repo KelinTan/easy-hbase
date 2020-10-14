@@ -1,4 +1,5 @@
 ![Java CI](https://github.com/KelinTan/easy-hbase/workflows/Java%20CI/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/KelinTan/easy-hbase/branch/master/graph/badge.svg?token=yFWkvtCuld)](undefined)
 
 ## 2.0.0版本 2020.8.10 更新
 
