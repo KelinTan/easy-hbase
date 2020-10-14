@@ -2,6 +2,7 @@
 
 package com.kelin.easy.hbase.systest;
 
+import com.kelin.easy.hbase.common.constants.HBaseConstant;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HBaseTestingUtility;
@@ -26,7 +27,8 @@ public class HBaseTestingUtilityManager {
 
     static {
         Configuration config = HBaseConfiguration.create();
-        //fix issue https://issues.apache.org/jira/browse/HBASE-20544?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel
+        //fix issue https://issues.apache.org/jira/browse/HBASE-20544?page=com.atlassian.jira.plugin.system
+        // .issuetabpanels%3Aall-tabpanel
         config.setInt(HConstants.REGIONSERVER_PORT, 0);
         TESTING_UTILITY = new HBaseTestingUtility(config);
         try {
@@ -38,6 +40,10 @@ public class HBaseTestingUtilityManager {
 
     public static HBaseTestingUtility getInstance() {
         return TESTING_UTILITY;
+    }
+
+    public static void createTable(String tableName) {
+        createTable(tableName, HBaseConstant.DEFAULT_FAMILY);
     }
 
     public static void createTable(String tableName, String family) {
