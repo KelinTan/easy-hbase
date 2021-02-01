@@ -202,7 +202,8 @@ public class HBaseServiceTest {
         String column = "2";
 
         assertThat(service.getSingleColumnValue(COLUMN_TABLE, rowKey, column)).isNotNull();
-        service.delete(COLUMN_TABLE, rowKey);
+        boolean result = service.delete(COLUMN_TABLE, rowKey);
+        assert result;
         assertThat(service.getSingleColumnValue(COLUMN_TABLE, rowKey, column)).isNull();
     }
 
@@ -212,7 +213,8 @@ public class HBaseServiceTest {
         String column = "2";
 
         assertThat(service.getSingleColumnValue(COLUMN_TABLE, rowKey, column)).isNotNull();
-        service.delete(COLUMN_TABLE, rowKey, column);
+        boolean result = service.delete(COLUMN_TABLE, rowKey, column);
+        assert result;
         assertThat(service.getSingleColumnValue(COLUMN_TABLE, rowKey, column)).isNull();
         assertThat(service.getSingleColumnValue(COLUMN_TABLE, rowKey, "1")).isNotNull();
     }

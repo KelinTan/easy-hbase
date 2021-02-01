@@ -31,10 +31,11 @@ public class HBaseServiceAutoConfigTest {
 
     @Test
     public void testGetRowKeys() {
-        hBaseService.put(DEMO_TABLE, new Demo("1", 1, "name1"));
+        boolean result = hBaseService.put(DEMO_TABLE, new Demo("1", 1, "name1"));
 
         Demo demo = hBaseService.get(DEMO_TABLE, "1", Demo.class);
 
+        assert result;
         Assert.assertNotNull(demo);
         Assert.assertEquals("name1", demo.getName());
     }
