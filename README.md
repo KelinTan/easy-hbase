@@ -1,6 +1,13 @@
 ![Java CI](https://github.com/KelinTan/easy-hbase/workflows/Java%20CI/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/KelinTan/easy-hbase/branch/master/graph/badge.svg?token=yFWkvtCuld)](undefined)
 
+## 脚手架系列 
+[脚手架 All in one](https://github.com/KelinTan/spring-boot-archetype)
+
+[纯净的脚手架 Test For Java](https://github.com/KelinTan/spring-boot-archetype-test)
+
+[纯净的脚手架 Test For Kotlin](https://github.com/KelinTan/spring-boot-archetype-test-kotlin)
+
 ## 2.0.0版本 2020.8.10 更新
 
 1. 重新梳理项目结构
